@@ -36,6 +36,7 @@ struct ClassifiedListItem: View {
             Text(classified.place)
                 .font(.dsCaption)
         }
+        .accessibilityElement(children: .combine)
     }
 }
 

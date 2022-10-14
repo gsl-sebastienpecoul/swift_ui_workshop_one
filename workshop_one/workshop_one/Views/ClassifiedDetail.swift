@@ -19,6 +19,8 @@ struct ClassifiedDetail: View {
                 Button("See more") {
                     isSheetPresented.toggle()
                 }
+                .accessibilityHidden(true)
+                
                 Spacer()
                 Button {
                     isAlertPresented.toggle()
