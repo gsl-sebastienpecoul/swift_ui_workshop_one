@@ -57,6 +57,6 @@ struct ClassifiedLabel: View {
 
 struct ClassifiedListItem_Previews: PreviewProvider {
     static var previews: some View {
-        ClassifiedListItem(classified: .constant(Classified.mocks[0]))
+        ClassifiedListItem(classified: .constant(Classified.mocks[4]))
     }
 }

@@ -7,6 +7,8 @@ struct ClassifiedDetail: View {
 
     @Binding var classified: Classified
     
+    let service = ClassifiedVisitService()
+    
     var body: some View {
         CustomVStack {
             ClassifiedListItem(classified: $classified)
@@ -20,6 +22,8 @@ struct ClassifiedDetail: View {
                     isSheetPresented.toggle()
                 }
                 .accessibilityHidden(true)
+                
+                Text("This classified has been seen at : \(service.formattedDate)")
                 
                 Spacer()
                 Button {
@@ -53,5 +57,18 @@ struct ClassifiedDetail_Previews: PreviewProvider {
         ClassifiedDetail(classified: .constant(Classified.mocks[0]))
         ClassifiedDetail(classified: .constant(Classified.mocks[2]))
             .previewDevice(PreviewDevice(rawValue: "iPad Pro (9.7-inch)"))
+    }
+}
+
+class ClassifiedVisitService {
+    
+    private let seenDate = Date()
+    
+    init() {}
+    
+    var formattedDate: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd - HH':'mm':'ss"
+        return formatter.string(from: seenDate)
     }
 }
