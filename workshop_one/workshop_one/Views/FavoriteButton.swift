@@ -16,7 +16,8 @@ struct FavoriteButton: View {
             }
             .accentColor(Color.red)
         }
-        .accessibilityLabel("Ajouter au favoris")
+        .accessibilityLabel("Add to favorite")
+        .accessibilityValue(isFavorite ? "Is favorite" : "Is not favorite" )
         .dynamicTypeSize(...DynamicTypeSize.accessibility1)
         .font(.title3)
     }

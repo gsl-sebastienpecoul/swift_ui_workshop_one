@@ -4,6 +4,11 @@ struct ClassifiedListItem: View {
     
     @Binding var classified: Classified
     
+    init(classified: Binding<Classified>) {
+        self._classified = classified
+        debugPrint("ClassifiedListItem init")
+    }
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             ImageView(url: classified.thumnbailPaths[0])
