@@ -12,11 +12,11 @@ struct FavoriteButton: View {
             Button {
                 isFavorite.toggle()
             } label: {
-                Image(systemName: isFavorite ? "heart" : "heart.fill")
+                Image(systemName: isFavorite ? "heart.fill" : "heart")
             }
             .accentColor(Color.red)
         }
-        .accessibilityLabel("Add to favorite")
+        .accessibilityAddTraits(isFavorite ? [.isButton, .isSelected] : [.isButton])
         .accessibilityValue(isFavorite ? "Is favorite" : "Is not favorite" )
         .dynamicTypeSize(...DynamicTypeSize.accessibility1)
         .font(.title3)

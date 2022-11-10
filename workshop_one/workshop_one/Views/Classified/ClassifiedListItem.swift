@@ -6,7 +6,6 @@ struct ClassifiedListItem: View {
     
     init(classified: Binding<Classified>) {
         self._classified = classified
-        debugPrint("ClassifiedListItem init")
     }
     
     var body: some View {

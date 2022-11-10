@@ -2,18 +2,15 @@ import SwiftUI
 
 struct ClassifiedDetail: View {
     
+    @Binding private var classified: Classified
     @State private var isAlertPresented = false
     @State private var isSheetPresented = false
-    @State private var isButtonEnabled = true
-    
-    @Binding var classified: Classified
     @StateObject var viewModel = ClassifiedDetailViewModel()
     
     let service = ClassifiedVisitService()
     
     init(classified: Binding<Classified>) {
         _classified = classified
-        debugPrint("Init ClassifiedDetail !")
     }
     
     var body: some View {
@@ -32,11 +29,7 @@ struct ClassifiedDetail: View {
                 
                 Text("This classified has been seen at : \(service.formattedDate)")
                 Text(viewModel.lastContactText)
-                Toggle("Button enable status", isOn: $isButtonEnabled)
-                  
                 Spacer()
-                CounterView()
-                Text("IS ? \(isButtonEnabled ? "oui" :"non")")
                 Button {
                     isAlertPresented.toggle()
                     viewModel.updateLastContactText()
@@ -93,32 +86,5 @@ class ClassifiedDetailViewModel: ObservableObject {
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd/YYYY 'at' HH':'mm':'ss"
         lastContactText = "Contacted the \(formatter.string(from: Date()))"
-    }
-}
-
-struct CounterView: View {
-    /// Using @StateObject instead of @ObservedObject
-    @ObservedObject var viewModel = CounterViewModel()
-
-    init() {
-        debugPrint("CounterView init")
-    }
-    
-    var body: some View {
-        VStack {
-            Text("Count is: \(viewModel.count)")
-            Button("Increment Counter") {
-                viewModel.incrementCounter()
-            }
-        }
-    }
-}
-
-final class CounterViewModel: ObservableObject {
-    private(set) var count = 0
-
-    func incrementCounter() {
-        count += 1
-        objectWillChange.send()
     }
 }
